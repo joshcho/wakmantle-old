@@ -1,0 +1,28 @@
+body {
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+/* For Webkit-based browsers (Chrome, Safari and Opera) */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* For IE, Edge and Firefox */
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+html {
+  overflow-y: scroll;  /* Force vertical scrollbar to be always present */
+}
+
+/* For Windows Chrome, Internet Explorer, Edge */
+::-webkit-scrollbar {
+  width: 0px;  /* Set width to 0 to make scrollbar invisible */
+}
+
+/* For Firefox */
+html {
+  scrollbar-width: none;  /* Make scrollbar invisible */
+}
