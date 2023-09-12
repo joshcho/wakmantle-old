@@ -22,13 +22,14 @@
            reduce-fsm/reduce-fsm                               {:mvn/version "0.1.4"}
            com.taoensso/timbre                                 {:mvn/version "6.2.2"}
            com.lambdaisland/glogi                              {:mvn/version "1.3.169"}
-           org.clojure/core.match                              {:mvn/version "1.0.1"}
+           ;; org.clojure/core.match                              {:mvn/version "1.0.1"}
            metosin/malli                                       {:mvn/version "0.12.0"}
            zcaudate/hara                                       {:git/url "https://github.com/joshcho/hara" :git/sha "5361975bb67d403ab44b924322812ebee22fd5a2"}
            kezban/kezban                                       {:mvn/version "0.1.94"}
            net.cgrand/xforms                                   {:mvn/version "0.19.5"}
            prismatic/plumbing                                  {:mvn/version "0.6.0"}
-           net.mikera/core.matrix                              {:mvn/version "0.63.0"}}
+           net.mikera/core.matrix                              {:mvn/version "0.63.0"}
+           }
  :aliases {:dev
            {:extra-deps
             {binaryage/devtools          {:mvn/version "1.0.6"}

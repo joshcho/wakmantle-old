@@ -14,7 +14,7 @@
    [clojure.string]
    [hyperfiddle.electric :as e]
    [hyperfiddle.electric-dom2 :as dom]
-   [clojure.core.match :refer [match]]
+   ;; [clojure.core.match :refer [match]]
    [hyperfiddle.electric-ui4 :as ui]
    [missionary.core :as m]
    ;; #?(:clj [app.tx :as tx])
@@ -106,39 +106,40 @@
                    (e/fn [e]
                      (when (u/in? '("ArrowUp" "ArrowDown")
                                   (.-key e))
-                       (match (.-key e)
-                         ~(if reverse?
-                            "ArrowDown"
-                            "ArrowUp")
-                         (swap! !n#
-                                #(let [it#   (atom %)
-                                       cont# (atom true)
-                                       val#  (if (= @it# (count ~cmds))
-                                               ""
-                                               (nth ~cmds @it#))]
-                                   (while (and (< 0 @it#) @cont#)
-                                     (swap! it# dec)
-                                     (when (not= (nth ~cmds @it#)
-                                                 val#)
-                                       (reset! cont# false)))
-                                   @it#))
-                         ~(if reverse?
-                            "ArrowUp"
-                            "ArrowDown")
-                         (swap! !n#
-                                #(let [it#   (atom %)
-                                       cont# (atom true)
-                                       val#  (if (= @it# (count ~cmds))
-                                               ""
-                                               (nth ~cmds @it#))]
-                                   (while (and (< @it# (count ~cmds)) @cont#)
-                                     (swap! it# inc)
-                                     (when (not= (if (= @it# (count ~cmds))
+                       (cond (= (.-key e)
+                                ~(if reverse?
+                                   "ArrowDown"
+                                   "ArrowUp"))
+                             (swap! !n#
+                                    #(let [it#   (atom %)
+                                           cont# (atom true)
+                                           val#  (if (= @it# (count ~cmds))
                                                    ""
-                                                   (nth ~cmds @it#))
-                                                 val#)
-                                       (reset! cont# false)))
-                                   @it#)))
+                                                   (nth ~cmds @it#))]
+                                       (while (and (< 0 @it#) @cont#)
+                                         (swap! it# dec)
+                                         (when (not= (nth ~cmds @it#)
+                                                     val#)
+                                           (reset! cont# false)))
+                                       @it#))
+                             (= (.-key e)
+                                ~(if reverse?
+                                   "ArrowUp"
+                                   "ArrowDown"))
+                             (swap! !n#
+                                    #(let [it#   (atom %)
+                                           cont# (atom true)
+                                           val#  (if (= @it# (count ~cmds))
+                                                   ""
+                                                   (nth ~cmds @it#))]
+                                       (while (and (< @it# (count ~cmds)) @cont#)
+                                         (swap! it# inc)
+                                         (when (not= (if (= @it# (count ~cmds))
+                                                       ""
+                                                       (nth ~cmds @it#))
+                                                     val#)
+                                           (reset! cont# false)))
+                                       @it#)))
                        (let [val# (if (= @!n# (count ~cmds))
                                     "" (nth ~cmds @!n#))]
                          (set! (.-value dom/node) val#)

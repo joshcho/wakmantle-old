@@ -15,16 +15,14 @@
    [app.tailwind :refer [tw -tw]]
    #?(:clj
       [app.data :refer [우왁굳 아이네 징버거 비챤 릴파 주르르 고세구 gomem1 gomem2]])
-   [app.reactive-render :as rr]
    [app.printer :as p]
-   [clojure.core.match :refer [match]]
    [clojure.string :as str]
    [clojure.set :as set]
    [clojure.core.matrix :as m]
    ;; [malli.core :as m]
    #?@
    (:cljs
-    [[app.icons :as icons]
+    [
      ["remarkable" :as remarkable]
      ["remarkable-katex" :as remarkable-katex]
      [goog.dom :as gdom]
@@ -812,17 +810,17 @@
                      (tw "text-blue-600 hover:text-blue-800 cursor-pointer")
                      (text s2))
                     (text s2)))))))
-        (div
-          (tw "flex gap-4 w-fit mx-auto my-4")
-          (e/for [[src site] [["img/github.png" "https://github.com/joshcho"] ["img/twitter.png" "https://twitter.com/eating_entropy"]]]
-            (a
-             (props {:href   site
-                     :target "_blank"})
-             (dom/img
-              (tw "rounded-lg opacity-30 hover:opacity-70 hover:cursor-pointer")
-              (props {:src    src
-                      :height "30px"
-                      :width  "30px"}))))))))))
+        #_(div
+            (tw "flex gap-4 w-fit mx-auto my-4")
+            (e/for [[src site] [["img/github.png" "https://github.com/joshcho"] ["img/twitter.png" "https://twitter.com/eating_entropy"]]]
+              (a
+               (props {:href   site
+                       :target "_blank"})
+               (dom/img
+                (tw "rounded-lg opacity-30 hover:opacity-70 hover:cursor-pointer")
+                (props {:src    src
+                        :height "30px"
+                        :width  "30px"}))))))))))
 
 #_(def custom-wakgood
     {"고멤"
