@@ -1,11 +1,7 @@
 (ns user
   (:require
-   ;; [cemerick.pomegranate :as pom]
-   app.meme
-   [cemerick.pomegranate.aether :as aether]
    [nextjournal.clerk :as clerk])) ; Must be ".clj" file, Clojure doesn't auto-load user.cljc
 
-(alter-var-root #'aether/maven-central assoc "clojars" "https://repo.clojars.org")
 ;; lazy load dev stuff - for faster REPL startup and cleaner dev classpath
 (def start-electric-server! (delay @(requiring-resolve 'app.electric-server-java8-jetty9/start-server!)))
 (def shadow-start! (delay @(requiring-resolve 'shadow.cljs.devtools.server/start!)))

@@ -1,4 +1,4 @@
-^{:nextjournal.clerk/visibility {:code :hide :result :hide}}
+;; ^{:nextjournal.clerk/visibility {:code :hide :result :hide}}
 (ns app.utils
   #?(:cljs (:require-macros [app.utils :refer [textarea* relay-atom range* input*
                                                ;; e-relay-atom
@@ -8,6 +8,8 @@
    contrib.str
    #?(:cljs
       [goog.string :as gstring])
+   #?(:clj
+      [clojure.tools.macro :refer [macrolet symbol-macrolet]])
    #?(:cljs
       [goog.string.format :as format])
    [hyperfiddle.rcf :refer [tests]]
@@ -16,11 +18,274 @@
    [hyperfiddle.electric-dom2 :as dom]
    ;; [clojure.core.match :refer [match]]
    [hyperfiddle.electric-ui4 :as ui]
-   [missionary.core :as m]
+   [malli.core :as m]
+   [clojure.core.match :refer [match]]
+   #?(:clj
+      [clojure.test :refer [function?]])
    ;; #?(:clj [app.tx :as tx])
    #?(:clj
       [reduce-fsm :as fsm])
+   [malli.dev.pretty :as pretty]
+   [malli.util :as mu]
    ))
+
+
+(declare in?)
+(declare concatv)
+(declare map-keys)
+(declare map-vals)
+(declare mb->)
+(declare mb->>)
+(declare mb->>>)
+(malli.registry/set-default-registry!
+ (-> m/default-registry (malli.registry/schemas)
+     (assoc :coll (m/-collection-schema
+                   {:type  :java-collection,
+                    :pred  coll?
+                    :empty []}))))
+
+#?(:clj
+   (do
+     (defn error
+       ([msg data]
+        (throw (ex-info msg data)))
+       ([msg]
+        (error msg {})))
+
+     (defmacro me [expr]
+       `(clojure.walk/prewalk
+         (fn [x#] (if (qualified-symbol? x#)
+                    (symbol (name x#))
+                    x#))
+         (macroexpand-1 '~expr)))
+     (defmacro me- [expr]
+       `(macroexpand-1 '~expr))
+
+     (defmacro letm [state-map & body]
+       (let [!bindings (atom [])]
+         (letfn [(bang [sym]
+                   (symbol (str "!" sym)))
+                 (exposing-non-atom? [k]
+                   (= (first (str k)) \_))
+                 (remove-exposing [k]
+                   (symbol (subs (str k) 1)))
+                 (gen-connected-map [m]
+                   (into {}
+
+                     (mapcat (fn [[k v]]
+                               (if (keyword? k)
+                                 [k v]
+                                 (if (exposing-non-atom? k)
+                                   (let [k (remove-exposing k)]
+                                     [[(keyword k) k]])
+                                   (if (map? v)
+                                     [[(keyword k) k]]
+                                     [[(keyword k) k]
+                                      [(keyword (bang k)) (bang k)]]))))
+                             m)))
+                 (gen-bindings! [m !bindings init?]
+                   ;; call with init? as true
+                   (let [new-bindings
+                         (concatv
+                          (mapcat (fn [[k v]]
+                                    (cond
+                                      (map? v)
+                                      (do
+                                        (gen-bindings! v !bindings false)
+                                        [k (gen-connected-map v)])
+                                      (and (symbol? k)
+                                           (not (exposing-non-atom? k)))
+                                      `(~(bang k) (atom ~v))
+                                      (and (keyword? k) init?)
+                                      (error "We don't allow keywords at base map for letm.")))
+                                  m)
+                          (mapcat (fn [[k v]]
+                                    (when (and (symbol? k)
+                                               (not (map? v)))
+                                      (if (exposing-non-atom? k)
+                                        `(~(remove-exposing k) ~v)
+                                        [k `(e/watch ~(bang k))]
+                                        #_(and (exposing-non-atom? k)
+                                               (not (map? v)))
+                                        #_(if (exposing-non-atom? k)
+                                            `(~(remove-exposing k) ~v)
+                                            `(~(bang k) (atom ~v)))
+                                        )))
+                                  m))]
+                     (swap! !bindings concatv new-bindings)))]
+           (gen-bindings! state-map !bindings true)
+           (assert (= (count (take-nth 2 @!bindings))
+                      (count (set (take-nth 2 @!bindings))))
+                   "Some bindings are duplicate.")
+           `(let ~(deref !bindings)
+              ~@body))))
+
+     (comment
+       (defstate-server
+         {history []
+          })
+       (defstate-client
+         {flags {hard-mode (atom false)
+                 won       (atom false)
+                 gave-up   (atom false)}
+          })
+       #?(:clj
+          (do
+
+
+
+            )))
+
+     (do
+
+       (def type->schema
+         (macrolet [(quote-map
+                     [m]
+                     (into {}
+                       (map (fn [[k v]]
+                              `['~k ~v])
+                            m)))]
+           (letfn [(relax-and-add-strict
+                     [m]
+                     (->> m
+                       (map (fn [[sym schema]]
+                              [[sym [:maybe schema]]
+                               [(symbol (str sym "!")) schema]]))
+                       (apply concat)
+                       (into m)))]
+             (-> {n    [:int]
+                  v    [:coll :any]
+                  v1   [:coll :any]
+                  v2   [:coll :any]
+                  coll [:coll :any]
+                  xs   [:coll :any]
+                  s    [:string]
+                  s1   [:string]
+                  s2   [:string]
+                  i    [:int]
+                  m    [:map]
+                  bool [:boolean]
+                  vars [:coll :any]}
+               quote-map
+               relax-and-add-strict))))
+
+       (defn strict-type? [t]
+         (and
+          (type->schema t)
+          (= \! (last (str t)))))
+
+       (defn union-type? [t]
+         (and
+          (type->schema t)
+          (not (= \! (last (str t))))))
+
+       (defn valid-type? [t]
+         (boolean (type->schema t))))
+
+     (def ^:dynamic *reporter* (pretty/thrower (pretty/-printer {:colors nil})))
+
+     (defmacro massert
+       "Assert that `x` validates against schema `?schema`, or throws ExceptionInfo.
+   The clojure.core/*assert* constant controls whether assertion are checked."
+       ([?schema x f]
+        (if *assert*
+          `(let [x# ~x]
+             (if (m/validate ~?schema x#)
+               x#
+               (error "Schema mismatch."
+                      (merge
+                       {:var '~x}
+                       (when ~f
+                         {:fn ~f})
+                       (mu/explain-data ~?schema x#)))
+               ;; (*reporter* ::m/explain (mu/explain-data ~?schema x#))
+               ))
+          x))
+       ([?schema x]
+        `(massert ~?schema ~x nil)))
+
+     (defmacro >fn [vars & body]
+       (assert (= (count vars) (count (set vars)))
+               "Duplicate vars")
+       (let [var->schema
+             (fn [var]
+               (match [var]
+                 ;; t can be a function symbol, too
+                 [([x t] :seq)]
+                 (mb->>> (type->schema t)
+                   nil? (constantly
+                         (error "Not a valid type in >fn."
+                                {:type  t
+                                 :value x})))
+                 ;; if t is not a type, then we just return nil
+                 [(t :guard symbol?)]
+                 (type->schema t)
+                 :else (error
+                        "Not a symbol nor pair"
+                        {:data var})))
+             schema-asserts
+             (->> vars
+               (map (fn [v] [v (var->schema v)]))
+               (remove (comp nil? second))
+               (mapv  (fn [[v schema]]
+                        `(massert ~schema ~(mb->>> v list? first)))))
+             soft-check-expr-from-var
+             (fn [x]
+               (when (and (not (list? x)) (union-type? x))
+                 `(when (nil? ~x)
+                    (#?(:clj prn
+                        :cljs js/console.log)
+                     (str "Passed in nil for " '~x " in >fn")))))
+             soft-check-exprs
+             (->> vars
+               (map soft-check-expr-from-var)
+               (remove nil?))]
+         `(fn ~(mapv #(mb->>> % list? first) vars)
+            ~@schema-asserts
+            ~@soft-check-exprs
+            ~@body)))
+
+     (defmacro >defn [sym vars & body]
+       (assert (= (count vars) (count (set vars)))
+               "Duplicate vars")
+       (let [var->schema
+             (fn [var]
+               (match [var]
+                 ;; t can be a function symbol, too
+                 [([x t] :seq)]
+                 (mb->>> (type->schema t)
+                   nil? (constantly
+                         (error "Not a valid type in >fn."
+                                {:type  t
+                                 :value x})))
+                 ;; if t is not a type, then we just return nil
+                 [(t :guard symbol?)]
+                 (type->schema t)
+                 :else (error
+                        "Not a symbol nor pair"
+                        {:data var})))
+             schema-asserts
+             (->> vars
+               (map (fn [v] [v (var->schema v)]))
+               (remove (comp nil? second))
+               (mapv  (fn [[v schema]]
+                        `(massert ~schema ~(mb->>> v list? first)
+                                  ~sym))))
+             soft-check-expr-from-var
+             (fn [x]
+               (when (and (not (list? x)) (union-type? x))
+                 `(when (nil? ~x)
+                    (#?(:clj prn
+                        :cljs js/console.log)
+                     (str "Passed in nil for " '~x " in >fn")))))
+             soft-check-exprs
+             (->> vars
+               (map soft-check-expr-from-var)
+               (remove nil?))]
+         `(defn ~sym ~(mapv #(mb->>> % list? first) vars)
+            ~@schema-asserts
+            ~@soft-check-exprs
+            ~@body)))))
 
 #?(:clj
    (do

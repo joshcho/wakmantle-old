@@ -1,6 +1,6 @@
 (ns prod
   (:gen-class)
-  (:require app.todo-list ; prod only (app is not loaded by shadow in prod)
+  (:require app.meme ; prod only (app is not loaded by shadow in prod)
             clojure.string
             app.electric-server-java8-jetty9))
 
@@ -12,4 +12,4 @@
     (throw (ex-info "HYPERFIDDLE_ELECTRIC_SERVER_VERSION jvm property must be set in prod" {})))
   (app.electric-server-java8-jetty9/start-server! electric-server-config))
 
-; On CLJS side we reuse src/user.cljs for prod entrypoint
+                                        ; On CLJS side we reuse src/user.cljs for prod entrypoint

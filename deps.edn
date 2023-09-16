@@ -10,7 +10,7 @@
            org.clojure/tools.logging                           {:mvn/version "1.2.4"}
            ch.qos.logback/logback-classic                      {:mvn/version "1.2.11"}
            ring-basic-authentication/ring-basic-authentication {:mvn/version "1.1.1"}
-           clj-commons/pomegranate                             {:mvn/version "1.2.23"}
+           ;; clj-commons/pomegranate                             {:mvn/version "1.2.23"}
            net.clojars.wkok/openai-clojure                     {:mvn/version "0.9.0"}
            instaparse/instaparse                               {:mvn/version "1.4.12"}
            lambdaisland/regal                                  {:mvn/version "0.0.143"}
@@ -22,13 +22,18 @@
            reduce-fsm/reduce-fsm                               {:mvn/version "0.1.4"}
            com.taoensso/timbre                                 {:mvn/version "6.2.2"}
            com.lambdaisland/glogi                              {:mvn/version "1.3.169"}
-           ;; org.clojure/core.match                              {:mvn/version "1.0.1"}
+           org.clojure/core.match                              {:mvn/version "1.0.1"}
            metosin/malli                                       {:mvn/version "0.12.0"}
-           zcaudate/hara                                       {:git/url "https://github.com/joshcho/hara" :git/sha "5361975bb67d403ab44b924322812ebee22fd5a2"}
-           kezban/kezban                                       {:mvn/version "0.1.94"}
-           net.cgrand/xforms                                   {:mvn/version "0.19.5"}
-           prismatic/plumbing                                  {:mvn/version "0.6.0"}
+           midje/midje                                         {:mvn/version "1.10.9"}
+           com.crypticbutter/snoop                             {:git/url "https://github.com/joshcho/snoop"
+                                                                :git/sha "e5995ebfc40bf0afd7fb20d7c59db3b75a5c7666"}
+           ;; zcaudate/hara                                       {:git/url "https://github.com/joshcho/hara" :git/sha "5361975bb67d403ab44b924322812ebee22fd5a2"}
+           ;; kezban/kezban                                       {:mvn/version "0.1.94"}
+           ;; net.cgrand/xforms                                   {:mvn/version "0.19.5"}
+           ;; prismatic/plumbing                                  {:mvn/version "0.6.0"}
            net.mikera/core.matrix                              {:mvn/version "0.63.0"}
+           org.clojure/tools.macro                             {:mvn/version "0.1.5"}
+           org.clj-commons/pretty                              {:mvn/version "2.2"}
            }
  :aliases {:dev
            {:extra-deps
@@ -37,8 +42,9 @@
              cider/cider-nrepl           {:mvn/version "0.27.4"}
              org.clojure/tools.namespace {:mvn/version "1.3.0"}}
             :jvm-opts
-            ["-Xss2m" ; https://github.com/hyperfiddle/photon/issues/11
+            ["-Xss8m" ; https://github.com/hyperfiddle/photon/issues/11
              "-XX:-OmitStackTraceInFastThrow" ;; RCF
+             "-Dsnoop.enabled"
              ]
             :exec-fn   user/main
             :exec-args {}}
@@ -48,4 +54,4 @@
             :extra-deps  {io.github.clojure/tools.build    {:git/tag "v0.8.2" :git/sha "ba1a2bf"}
                           io.github.seancorfield/build-clj {:git/tag "v0.8.0" :git/sha "9bd8b8a"}
                           thheller/shadow-cljs             {:mvn/version "2.20.1"}}
-            :jvm-opts    ["-Xss2m"]}}}
+            :jvm-opts    ["-Xss8m"]}}}
