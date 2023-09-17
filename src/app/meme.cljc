@@ -12,6 +12,7 @@
    [missionary.core]
    [app.utils :as u :refer [cond-let cmt enter arrows mb-> mb->> mb->>> dropdown
                             >defn >fn letm]]
+   [app.central :refer [defstate]]
    [app.tailwind :refer [tw -tw]]
    #?(:clj
       [app.data :refer [우왁굳 아이네 징버거 비챤 릴파 주르르 고세구 gomem1 gomem2] :as data])
@@ -36,10 +37,16 @@
      ])))
 
 #?(:clj (defonce !conn (d/create-conn {}))) ; database on server
+
 (e/def db) ; injected database ref; Electric defs are always dynamic
 
 ;; move these to clj later
 
+
+(defstate ctr-state
+  {global-state {
+                 ;; :ctr/host        :server
+                 n-todays-answers 7}})
 
 #?(:clj
    (do
@@ -47,18 +54,18 @@
        (->> (api/create-embedding
              {:model "text-embedding-ada-002"
               :input [s]})
-            :data
-            first
-            :embedding))
+         :data
+         first
+         :embedding))
      (defn desc-embeds [descs]
        (->> (api/create-embedding
              {:model "text-embedding-ada-002"
               :input descs})
-            :data
-            (sort-by :index)
-            (map :embedding)
-            (map vector descs)
-            (into {})))
+         :data
+         (sort-by :index)
+         (map :embedding)
+         (map vector descs)
+         (into {})))
      (defonce desc-embeds-memo (memoize desc-embeds))
      (defn to-meme-map [v]
        (let [descs       (map second v)
@@ -73,68 +80,58 @@
 
 #?(:clj
    (do
-     (defn handle-colon [streamer-var]
-       (->>
-           (str/split streamer-var (re-pattern "\n+"))
-         (map #(str/split % (re-pattern ": ") 2))
-         (filter
-          (fn [x]
-            (= (count x) 2)))
-         (map (fn [[x y]]
-                [(str/trim x) y]))))
 
-     (defn handle-gomem [x]
-       (let [[s1 s2] x]
-         (->>
-             (str/split (str s1 "\n" s2)
-                        (re-pattern "\n+"))
-           (map #(str/split % (re-pattern ": ") 2))
-           (filter
-            (fn [x]
-              (= (count x) 2)))
-           (map (fn [[x y]]
-                  [(str/trim x) y])))))
 
-     (def wv (u/map-vals
-              to-meme-map
-              (merge
-               {"비챤"
-                (handle-colon 비챤)
-                "우왁굳"
-                (->> 우왁굳
-                  (map (fn [meme-list-str]
-                         (filter
-                          #(str/includes? % " - ")
-                          (str/split meme-list-str (re-pattern "\n")))))
-                  (map (fn [meme-list]
-                         (map #(str/split % (re-pattern " - ") 2)
-                              meme-list)))
-                  (apply concat)
-                  (into {}))
-                "아이네"
-                (handle-colon 아이네)
-                "징버거"
-                (handle-colon 징버거)
-                "릴파"
-                (handle-colon 릴파)
-                "주르르"
-                (handle-colon 주르르)
-                "고세구"
-                (handle-colon 고세구)}
-               (u/map-vals
-                handle-gomem
-                gomem1)
-               (u/map-vals
-                handle-gomem
-                gomem2))))
+     (def wv
+       (letfn [(handle-colon [streamer-var]
+                 (->>
+                     (str/split streamer-var (re-pattern "\n+"))
+                   (map #(str/split % (re-pattern ": ") 2))
+                   (filter
+                    (fn [x]
+                      (= (count x) 2)))
+                   (map (fn [[x y]]
+                          [(str/trim x) y]))))
+               (handle-gomem [x]
+                 (let [[s1 s2] x]
+                   (->>
+                       (str/split (str s1 "\n" s2)
+                                  (re-pattern "\n+"))
+                     (map #(str/split % (re-pattern ": ") 2))
+                     (filter
+                      (fn [x]
+                        (= (count x) 2)))
+                     (map (fn [[x y]]
+                            [(str/trim x) y])))))]
+         (u/map-vals
+          to-meme-map
+          (merge
+           {"우왁굳"
+            (->> 우왁굳
+              (map (fn [meme-list-str]
+                     (filter
+                      #(str/includes? % " - ")
+                      (str/split meme-list-str (re-pattern "\n")))))
+              (map (fn [meme-list]
+                     (map #(str/split % (re-pattern " - ") 2)
+                          meme-list)))
+              (apply concat)
+              (into {}))
+            "아이네" (handle-colon 아이네)
+            "징버거" (handle-colon 징버거)
+            "릴파"   (handle-colon 릴파)
+            "주르르" (handle-colon 주르르)
+            "고세구" (handle-colon 고세구)
+            "비챤"   (handle-colon 비챤)}
+           (u/map-vals handle-gomem gomem1)
+           (u/map-vals handle-gomem gomem2)))))
      (assert (m/validate [:map-of :string
                           [:map-of :string
                            [:map
                             [:desc :string]
                             [:embed [:vector :any]]]]]
                          wv)
-             "Something wrong with wv")
-     ))
+             "Something wrong with wv")))
 
 (defn cosine-similarity [v1 v2]
   (let [magnitude (fn [v] (Math/sqrt (mat/dot v v)))
@@ -417,11 +414,14 @@
         (tw "btn-[* sm] bg-base-100 hover:bg-base-200 rounded-md font-normal")
         (text ">>")))))
 
+
 (e/defn Main []
   (e/server
    (binding [db (e/watch !conn)]
      (e/client
       (div
+        (p/peek ctr-state)
+        (div (text ctr-state))
         (letm {play-flags        {hard-mode false
                                   won       false
                                   gave-up   false
