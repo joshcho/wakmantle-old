@@ -23,8 +23,8 @@
    #?(:clj
       [clojure.test :refer [function?]])
    ;; #?(:clj [app.tx :as tx])
-   #?(:clj
-      [reduce-fsm :as fsm])
+   ;; #?(:clj
+   ;;    [reduce-fsm :as fsm])
    [malli.dev.pretty :as pretty]
    [malli.util :as mu]
    ))
@@ -487,8 +487,6 @@
 ;;   (do
 ;;     (swap! fsm-state fsm/fsm-event c)
 ;;     (:value @fsm-state)))
-
-{:nextjournal.clerk/visibility {:code :hide :result :hide}}
 
 (defn replace-nth [lst n x]
   (map-indexed (fn [i v] (if (= i n) x v)) lst))

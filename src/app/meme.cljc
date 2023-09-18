@@ -1,6 +1,8 @@
 (ns app.meme
   #?(:clj (:import
-           [java.util Collections ArrayList Random Collection]))
+           [java.util Collections ArrayList Random Collection]
+           ;; (clojure.core.cache LRUCache)
+           ))
   (:require
    contrib.str
    ;; #?(:clj [datascript.core :as d])
@@ -26,7 +28,10 @@
    [malli.core :as m]
    ;; [clojure.core.cache :as cache]
    #?(:clj
-      [clojure.core.cache.wrapped :as w])
+      [clojure.core.cache.wrapped :as w]
+      )
+   ;; #?(:clj
+   ;;    [clojure.core.cache :as cache])
    #?@
    (:cljs
     [
@@ -358,38 +363,42 @@
                   :ctr/do-expr
                   #?(:clj
                      (do
-                       (defmacro pred-lookup-or-miss [pred cache k & body]
-                         `(if ~pred
-                            (w/lookup-or-miss
-                             ~cache ~k
-                             (constantly ~@body))
-                            (do
-                              ~@body)))
+                       #_(defmacro pred-lookup-or-miss [pred cache k & body]
+                           `(if ~pred
+                              (w/lookup-or-miss
+                               ~cache ~k
+                               (constantly ~@body))
+                              (do
+                                ~@body)))
                        (def completions-cache
                          (w/lru-cache-factory {} :threshold 128)))
                      :cljs nil)
                   _input-value-completions
                   (e/server
-                   (pred-lookup-or-miss
-                    (< (count input-value) 2)
-                    completions-cache input-value
-                    (when (and all-meme-names
-                               (not-empty input-value))
-                      (some->>
-                       all-meme-names
-                       #_(concat (keys map->desc&embed)
-                                 (->> (mapcat
-                                       (fn [[group-names members]]
-                                         (concat group-names members))
-                                       (e/server
-                                        data/group-names->members))
-                                   (remove nil?)))
-                       (mapv #(vector % (kr/kr-match-index input-value %)))
-                       (filter second)
-                       (sort-by second)
-                       (map first)
-                       (take (:autocomplete-count global-state))
-                       vec))))}}}
+                   (if (= (count input-value) 1)
+                     (w/lookup-or-miss
+                      completions-cache input-value
+                      (constantly
+                       (when (and all-meme-names
+                                  (not-empty input-value))
+                         (some->>
+                          all-meme-names
+                          (mapv #(vector % (kr/kr-match-index input-value %)))
+                          (filter second)
+                          (sort-by second)
+                          (map first)
+                          (take (:autocomplete-count global-state))
+                          vec))))
+                     (when (and all-meme-names
+                                (not-empty input-value))
+                       (some->>
+                        all-meme-names
+                        (mapv #(vector % (kr/kr-match-index input-value %)))
+                        (filter second)
+                        (sort-by second)
+                        (map first)
+                        (take (:autocomplete-count global-state))
+                        vec))))}}}
   CtrExprs)
 
 

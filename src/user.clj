@@ -1,6 +1,8 @@
 (ns user
-  (:require
-   [nextjournal.clerk :as clerk])) ; Must be ".clj" file, Clojure doesn't auto-load user.cljc
+  ;; (:require
+  ;;  ;; [nextjournal.clerk :as clerk]
+  ;;  )
+  ) ; Must be ".clj" file, Clojure doesn't auto-load user.cljc
 
 ;; lazy load dev stuff - for faster REPL startup and cleaner dev classpath
 (def start-electric-server! (delay @(requiring-resolve 'app.electric-server-java8-jetty9/start-server!)))
@@ -24,8 +26,8 @@
 (comment
   (main)                    ; Electric Clojure(JVM) REPL entrypoint
   (hyperfiddle.rcf/enable!) ; turn on RCF after all transitive deps have loaded
-  (clerk/serve! {:watch-paths    ["src"]
-                 :show-filter-fn (partial = "src/app/utils.cljc")})
+  ;; (clerk/serve! {:watch-paths    ["src"]
+  ;;                :show-filter-fn (partial = "src/app/utils.cljc")})
   (shadow.cljs.devtools.api/repl :dev) ; shadow server hosts the cljs repl
                                         ; connect a second REPL instance to it
                                         ; (DO NOT REUSE JVM REPL it will fail weirdly)
