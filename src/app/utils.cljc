@@ -44,6 +44,11 @@
                     :pred  coll?
                     :empty []}))))
 
+(defmacro lit-map
+  "(lit-map [a b c]) => {:a a :b b :c c}"
+  [syms]
+  `(hash-map ~@(mapcat (fn [k] [(keyword k) k]) syms)))
+
 #?(:clj
    (do
      (defn error
@@ -55,8 +60,8 @@
      (defmacro me [expr]
        `(clojure.walk/prewalk
          (fn [x#] (if (qualified-symbol? x#)
-                    (symbol (name x#))
-                    x#))
+                   (symbol (name x#))
+                   x#))
          (macroexpand-1 '~expr)))
      (defmacro me- [expr]
        `(macroexpand-1 '~expr))

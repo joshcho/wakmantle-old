@@ -42,6 +42,7 @@
 
 ;; move these to clj later
 
+
 (defstate ctr-state
   {global-state  {:ctr/host        :server
                   n-todays-answers 3
