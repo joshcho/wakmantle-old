@@ -42,31 +42,31 @@
 
 ;; move these to clj later
 
-#_(defstate ctr-state
-    {global-state  {:ctr/host        :server
-                    n-todays-answers 3
-                    :_answer-seed    42
-                    :_today          (int e/system-time-secs)
-                    :_todays-answers ["아자뾰" "염소희" "권타버스"] ; fill out later
-                    _hint-count-fn   (fn [best-rank]
-                                       (if (< best-rank 200) 5 0))}
-     session-state {answer-state {:ctr/host      :client
-                                  :answer-idx    0
-                                  _answer        (nth (:todays-answers global-state)
-                                                      answer-idx)
-                                  :_on-last-idx  (= answer-idx (dec n-todays-answers))
-                                  :_on-first-idx (= answer-idx 0)}
-                    play-state   {recent-guess nil
-                                  past-guesses []}}})
-
-
-
 (defstate ctr-state
-  {game-state {:answer-idx 0
-               :_answers   ["a" "b"]
-               _answer     (nth answers answer-idx)}
-   ab         1
-   :_name     "hello"})
+  {global-state  {:ctr/host        :server
+                  n-todays-answers 3
+                  :_answer-seed    42
+                  :_today          (int e/system-time-secs)
+                  :_todays-answers ["아자뾰" "염소희" "권타버스"] ; fill out later
+                  _hint-count-fn   (fn [best-rank]
+                                     (if (< best-rank 200) 5 0))}
+   session-state {answer-state {:ctr/host      :client
+                                :answer-idx    0
+                                _answer        (nth (:todays-answers global-state)
+                                                    answer-idx)
+                                :_on-last-idx  (= answer-idx (dec n-todays-answers))
+                                :_on-first-idx (= answer-idx 0)}
+                  play-state   {recent-guess nil
+                                past-guesses []}}})
+
+
+
+#_(defstate ctr-state
+    {game-state {:answer-idx 0
+                 :_answers   ["a" "b"]
+                 _answer     (nth answers answer-idx)}
+     ab         1
+     :_name     "hello"})
 
 
 #?(:clj
@@ -442,6 +442,13 @@
      (e/client
       (div
         (div (text ctr-state))
+        (div (text answer))
+        (ui/button
+          (e/fn []
+            (swap!
+             (:!answer-idx answer-state)
+             inc))
+          (text "hello"))
         (letm {play-flags        {hard-mode false
                                   won       false
                                   gave-up   false
