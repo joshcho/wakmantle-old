@@ -43,6 +43,7 @@
                      (and ~(not= host-keyword :server) (not *clojure-version*)))))
 
      (defmacro defstate
+       ;; there is a bug with keywordizing map names
        "define global tiered state.
             (defstate ctr-state
               {global-state {:ctr/host        :server
@@ -60,7 +61,8 @@
               [(un-ctr [ctr-m]
                  (dissoc ctr-m
                          :ctr/host
-                         :ctr/expr))
+                         :ctr/expr
+                         :ctr/do-expr))
                (bang [sym]
                  (symbol (str "!" sym)))
                (dash [sym]
@@ -199,6 +201,8 @@
                      (gen-component-expr! (:ctr/expr ctr-m) !component-exprs !bindings))
                    `(do
                       ;; ~(deref !bindings)
+                      ~(when (:ctr/do-expr ctr-m)
+                         (:ctr/do-expr ctr-m))
                       ~@(deref !binding-defs)
                       ~@(mapv (fn [[map-name m]]
                                 (get-expr map-name m current-host @!bindings))
@@ -211,7 +215,8 @@
                ~(when component-sym
                   `(e/defn ~component-sym []
                      (e/client
-                      ~@(deref !component-exprs)))))))))
+                      ~@(deref !component-exprs)
+                      nil))))))))
 
      (defmacro letm [state-map & body]
        (let [!bindings (atom [])]

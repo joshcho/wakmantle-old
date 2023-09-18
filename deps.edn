@@ -27,6 +27,7 @@
            midje/midje                                         {:mvn/version "1.10.9"}
            com.crypticbutter/snoop                             {:git/url "https://github.com/joshcho/snoop"
                                                                 :git/sha "e5995ebfc40bf0afd7fb20d7c59db3b75a5c7666"}
+           org.clojure/core.cache                              {:mvn/version "1.0.225"}
            ;; zcaudate/hara                                       {:git/url "https://github.com/joshcho/hara" :git/sha "5361975bb67d403ab44b924322812ebee22fd5a2"}
            ;; kezban/kezban                                       {:mvn/version "0.1.94"}
            ;; net.cgrand/xforms                                   {:mvn/version "0.19.5"}

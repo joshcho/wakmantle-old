@@ -367,58 +367,32 @@
    the next fn (left-to-right) to the result, etc."
        [& form]
        `((comp ~@(reverse (rest form))) ~(first form)))
+
      (defmacro arrows
        ([!value cmds]
-        `(arrows ~!value ~cmds false))
-       ([!value cmds reverse?]
-        `(let [!n# (atom (count ~cmds))]
-           (dom/on "keydown"
-                   (e/fn [e]
-                     (when (u/in? '("ArrowUp" "ArrowDown")
-                                  (.-key e))
-                       (cond (= (.-key e)
-                                ~(if reverse?
-                                   "ArrowDown"
-                                   "ArrowUp"))
-                             (swap! !n#
-                                    #(let [it#   (atom %)
-                                           cont# (atom true)
-                                           val#  (if (= @it# (count ~cmds))
-                                                   ""
-                                                   (nth ~cmds @it#))]
-                                       (while (and (< 0 @it#) @cont#)
-                                         (swap! it# dec)
-                                         (when (not= (nth ~cmds @it#)
-                                                     val#)
-                                           (reset! cont# false)))
-                                       @it#))
-                             (= (.-key e)
-                                ~(if reverse?
-                                   "ArrowUp"
-                                   "ArrowDown"))
-                             (swap! !n#
-                                    #(let [it#   (atom %)
-                                           cont# (atom true)
-                                           val#  (if (= @it# (count ~cmds))
-                                                   ""
-                                                   (nth ~cmds @it#))]
-                                       (while (and (< @it# (count ~cmds)) @cont#)
-                                         (swap! it# inc)
-                                         (when (not= (if (= @it# (count ~cmds))
-                                                       ""
-                                                       (nth ~cmds @it#))
-                                                     val#)
-                                           (reset! cont# false)))
-                                       @it#)))
-                       (let [val# (if (= @!n# (count ~cmds))
-                                    "" (nth ~cmds @!n#))]
-                         (set! (.-value dom/node) val#)
-                         (reset! ~!value val#)
-                         (set! (.-selectionStart dom/node)
-                               (count val#))
-                         (set! (.-selectionEnd dom/node)
-                               (count val#))
-                         (.preventDefault e)))))
+        `(let [!n#    (atom 0)
+               max-n# (count ~cmds)]
+           (dom/on
+            "keydown"
+            (e/fn [e]
+              (if (u/in? '("ArrowUp" "ArrowDown")
+                         (.-key e))
+                (do
+                  (cond (= (.-key e) "ArrowDown")
+                        (swap! !n# #(min (inc %) max-n#))
+                        (= (.-key e) "ArrowUp")
+                        (swap! !n# #(max (dec %) 0)))
+                  (let [val# (if (= @!n# 0)
+                               "" (nth ~cmds (dec @!n#)))]
+                    (set! (.-value dom/node) val#)
+                    (reset! ~!value val#)
+                    (set! (.-selectionStart dom/node)
+                          (count val#))
+                    (set! (.-selectionEnd dom/node)
+                          (count val#))
+                    (.preventDefault e)))
+                ;; reset if something else is pressed
+                (reset! !n# 0))))
            ;; this can't be enter since enter clears value
            (dom/on "keydown"
                    (e/fn [e#]

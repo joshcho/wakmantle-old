@@ -89,16 +89,20 @@ space = #'\\s+'
      [& args]
      `(clojure.string/join
        " "
-       (list
-        ~@(map (fn [arg]
-                 (if (string? arg)
-                   (let [arg# (clojure.string/trim arg)]
-                     (tailwind-compiler arg#))
-                   `(when ~arg
-                      (tailwind-compiler ~arg))))
-               args)))))
+       (remove
+        nil?
+        (list
+         ~@(map (fn [arg]
+                  (if (string? arg)
+                    (let [arg# (clojure.string/trim arg)]
+                      (tailwind-compiler arg#))
+                    `(when ~arg
+                       (tailwind-compiler ~arg))))
+                args))))))
 
 #?(:clj
    (defmacro tw
+     ;; for some reason, first arg here cannot be nil...?
+     ;; but it's okay as second arg
      [& args]
      `(dom/props {:class (-tw ~@args)})))
