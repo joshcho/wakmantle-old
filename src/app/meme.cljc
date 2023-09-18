@@ -231,9 +231,11 @@
              (into {answer 100.0})))))))
 
 (defstate ctr-state
-  {global-state {:ctr/host            :server
+  {answer-seed (int (* 1000 (rand)))
+   ;; move answer-seed inside global-state with fixed # for determinism
+   global-state {:ctr/host            :server
                  _n-todays-answers    9
-                 :_answer-seed        42
+                 ;; :_answer-seed        42
                  ;; (int (* 1000 (rand)))
                  :_today-number       (e/server (- (int (quot (+ e/system-time-secs
                                                                  (* 9 60 60))
