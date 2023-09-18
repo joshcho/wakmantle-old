@@ -51,16 +51,17 @@
                   :_todays-answers ["아자뾰" "염소희" "권타버스"] ; fill out later
                   _hint-count-fn   (fn [best-rank]
                                      (if (< best-rank 200) 5 0))}
-   session-state {answer-state {:ctr/host      :client
-                                :answer-idx    0
+   session-state {:ctr/host    :client
+                  answer-state {:answer-idx    0
                                 _answer        (nth (:todays-answers global-state)
                                                     answer-idx)
                                 :_on-last-idx  (= answer-idx (dec n-todays-answers))
                                 :_on-first-idx (= answer-idx 0)}
                   play-state   {recent-guess nil
-                                past-guesses []}}})
-
-
+                                past-guesses []
+                                :ctr/expr    (when recent-guess
+                                               (swap! !past-guesses conj recent-guess))}}}
+  CtrState)
 
 #_(defstate ctr-state
     {game-state {:answer-idx 0
@@ -442,14 +443,22 @@
    (binding [db (e/watch !conn)]
      (e/client
       (div
+        (CtrState.)
         (div (text ctr-state))
         (div (text answer))
+        (div (text past-guesses))
         (ui/button
           (e/fn []
             (swap!
              (:!answer-idx answer-state)
              inc))
-          (text "hello"))
+          (text "inc idx"))
+        (ui/button
+          (e/fn []
+            (reset!
+             !recent-guess
+             "htnoeu"))
+          (text "set recent guess"))
         (letm {play-flags        {hard-mode false
                                   won       false
                                   gave-up   false

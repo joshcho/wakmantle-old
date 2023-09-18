@@ -50,152 +50,168 @@
                :play-state  {:ctr/host    :client
                              _recent-guess nil}})
           now global-state, n-todays-answers, and recent-guess are all visible as globals. play-state is not visible, as it's a keyword. global-state and play-state are maps. n-todays-answers is (e/watch !n-todays-answers) where !n-todays-answers is (atom 7). recent-guess is not a reactive atom since it has _ in front of it."
-       [state-sym ctr-m]
-       (let [conditional-def-sym (gensym)
-             dash-prefix         "--"]
-         (letfn
-             [(un-ctr [ctr-m]
-                (dissoc ctr-m :ctr/host))
-              (bang [sym]
-                (symbol (str "!" sym)))
-              (dash [sym]
-                (symbol (str dash-prefix sym)))
-              (underbar? [sym]
-                (= (first (str (symbol sym))) \_))
-              (bang-or-dash-bang? [sym]
-                (or
-                 (= (first (str (symbol sym))) \!)
-                 (when (< (count (str (symbol sym)))
-                          (count dash-prefix))
-                   (= (nth (str (symbol sym)) (count dash-prefix)) \!))))
-              (remove-underbar [sym]
-                (symbol (subs (str (symbol sym)) 1)))
-              (gen-binding-defs! [m current-host !binding-defs !bindings]
-                ;; generates dashed defs
-                (->> m
-                  (filter (comp keyword? first))
-                  (map (fn [[k v]] [(symbol k) v]))
-                  (mapv (fn [[k v]]
-                          (if (underbar? k)
-                            (swap! !binding-defs conj `(e/def ~(dash (remove-underbar k))
-                                                         (symbol-macrolet ~(apply concatv @!bindings)
-                                                           ~v)))
-                            (do
-                              (when-not (map? v)
-                                (swap! !binding-defs conj
-                                       `(let [~conditional-def-sym (host=
-                                                                    ~current-host)]
-                                          (conditional-def ~conditional-def-sym
-                                                           ~(dash (bang k)) (atom ~v)))))
-                              (swap! !binding-defs conj `(e/def ~(dash k)
-                                                           (e/client (e/watch ~(dash (bang k))))))))))))
-              (gen-bindings! [m !bindings]
-                ;; generates bindings, essentially replacing non-dashed with dashed in values
-                (->> m
-                  (filter (comp keyword? first))
-                  (map (fn [[k v]] [(symbol k) v]))
-                  (mapv (fn [[k v]]
-                          (if (underbar? k)
-                            (swap! !bindings conj [(remove-underbar k) (dash (remove-underbar k))])
-                            (do
-                              (when-not (map? v)
-                                (swap! !bindings conj [(bang k) (dash (bang k))]))
-                              (swap! !bindings conj [k (dash k)])))))))
-              (get-keysyms [m]
-                (vec
-                 (mapcat
-                  (fn [[k v]]
-                    (let [sym (symbol k)]
-                      (if (underbar? sym)
-                        (if (keyword? k)
-                          [(dash (remove-underbar sym))]
-                          [(remove-underbar sym)])
-                        (if (keyword? k)
-                          (if (map? v)
-                            [(dash sym)]
-                            [(dash sym) (dash (bang sym))])
-                          (if (map? v)
-                            [sym]
-                            [sym (bang sym)])))))
-                  m)))
-              (gen-defs! [m map-name current-host !defs !bindings]
-                ;; generate definitions
-                (let [full-def-requiring-pairs
-                      (->> m
-                        (filter (fn [[k v]]
-                                  (not (or (map? v)
-                                           (underbar? (symbol k))
-                                           (keyword? k))))))]
-                  (swap! !defs concatv
-                         (mapcat (fn [[k v]]
-                                   `((let [~conditional-def-sym (host=
-                                                                 ~current-host)]
-                                       (conditional-def ~conditional-def-sym
-                                                        ~(bang k) (atom ~v))
-                                       (e/def ~k (~(if (= current-host :client)
-                                                     'e/client
-                                                     'e/server)
-                                                  (e/watch ~(bang k)))))))
-                                 full-def-requiring-pairs)))
-                (let [partial-def-requiring-pairs
-                      (->> m
-                        (filter (fn [[k v]]
-                                  (and (underbar? (symbol k))
-                                       (not (or (map? v)
-                                                (keyword? k)))))))]
-                  (swap! !defs concatv
-                         (map (fn [[k v]]
-                                `(e/def ~(remove-underbar k)
-                                   (symbol-macrolet ~(apply concatv @!bindings)
-                                     ~v)))
-                              partial-def-requiring-pairs)))
-                (swap! !defs conj `(e/def ~map-name
-                                     ~(->> (map (fn [keysym]
-                                                  [(if (and
-                                                        (<
-                                                         (count dash-prefix)
-                                                         (count (str keysym)))
-                                                        (= (subs (str keysym) 0
-                                                                 (count dash-prefix))
-                                                           dash-prefix))
-                                                     (keyword (subs (str keysym)
-                                                                    (count dash-prefix)))
-                                                     (keyword keysym))
-                                                   (if (bang-or-dash-bang? keysym)
-                                                     `(~(if (= current-host :client)
-                                                          'e/client
-                                                          'e/server)
-                                                       ~keysym)
-                                                     keysym)])
-                                                (get-keysyms m))
-                                        (into {})))))
-              (get-expr [map-name ctr-m parent-host parent-bindings]
-                ;; the basic helper function for generating exprs
-                (let [m                 (un-ctr ctr-m)
-                      !binding-defs     (atom [])
-                      !defs             (atom [])
-                      !bindings         (atom parent-bindings)
-                      name-submap-pairs (->> m
-                                          (filter (comp map? second))
-                                          (map (fn [[k v]]
-                                                 [(if (underbar? k)
-                                                    (remove-underbar k)
-                                                    (symbol k))
-                                                  v])))
-                      current-host      (or (:ctr/host ctr-m) parent-host)]
-                  (gen-bindings! m !bindings)
-                  (gen-binding-defs! m current-host !binding-defs !bindings)
-                  (gen-defs! m map-name current-host !defs !bindings)
-                  `(do
-                     ;; ~(deref !bindings)
-                     ~@(deref !binding-defs)
-                     ~@(map (fn [[map-name m]]
-                              (get-expr map-name m current-host @!bindings))
-                            name-submap-pairs)
-                     ~@(deref !defs)
-                     )))]
-           ;; default to :client for host
-           (get-expr state-sym ctr-m :client []))))
+       ([state-sym ctr-m]
+        `(defstate ~state-sym ~ctr-m nil))
+       ([state-sym ctr-m component-sym]
+        (let [conditional-def-sym (gensym)
+              dash-prefix         "--"
+              !component-exprs    (atom [])]
+          (letfn
+              [(un-ctr [ctr-m]
+                 (dissoc ctr-m
+                         :ctr/host
+                         :ctr/expr))
+               (bang [sym]
+                 (symbol (str "!" sym)))
+               (dash [sym]
+                 (symbol (str dash-prefix sym)))
+               (underbar? [sym]
+                 (= (first (str (symbol sym))) \_))
+               (bang-or-dash-bang? [sym]
+                 (or
+                  (= (first (str (symbol sym))) \!)
+                  (when (< (count (str (symbol sym)))
+                           (count dash-prefix))
+                    (= (nth (str (symbol sym)) (count dash-prefix)) \!))))
+               (remove-underbar [sym]
+                 (symbol (subs (str (symbol sym)) 1)))
+               (gen-binding-defs! [m current-host !binding-defs !bindings]
+                 ;; generates dashed defs
+                 (->> m
+                   (filter (comp keyword? first))
+                   (map (fn [[k v]] [(symbol k) v]))
+                   (mapv (fn [[k v]]
+                           (if (underbar? k)
+                             (swap! !binding-defs conj `(e/def ~(dash (remove-underbar k))
+                                                          (symbol-macrolet ~(apply concatv @!bindings)
+                                                            ~v)))
+                             (do
+                               (when-not (map? v)
+                                 (swap! !binding-defs conj
+                                        `(let [~conditional-def-sym (host=
+                                                                     ~current-host)]
+                                           (conditional-def ~conditional-def-sym
+                                                            ~(dash (bang k)) (atom ~v)))))
+                               (swap! !binding-defs conj `(e/def ~(dash k)
+                                                            (e/client (e/watch ~(dash (bang k))))))))))))
+               (gen-bindings! [m !bindings]
+                 ;; generates bindings, essentially replacing non-dashed with dashed in values
+                 (->> m
+                   (filter (comp keyword? first))
+                   (map (fn [[k v]] [(symbol k) v]))
+                   (mapv (fn [[k v]]
+                           (if (underbar? k)
+                             (swap! !bindings conj [(remove-underbar k) (dash (remove-underbar k))])
+                             (do
+                               (when-not (map? v)
+                                 (swap! !bindings conj [(bang k) (dash (bang k))]))
+                               (swap! !bindings conj [k (dash k)])))))))
+               (get-keysyms [m]
+                 (vec
+                  (mapcat
+                   (fn [[k v]]
+                     (let [sym (symbol k)]
+                       (if (underbar? sym)
+                         (if (keyword? k)
+                           [(dash (remove-underbar sym))]
+                           [(remove-underbar sym)])
+                         (if (keyword? k)
+                           (if (map? v)
+                             [(dash sym)]
+                             [(dash sym) (dash (bang sym))])
+                           (if (map? v)
+                             [sym]
+                             [sym (bang sym)])))))
+                   m)))
+               (gen-defs! [m map-name current-host !defs !bindings]
+                 ;; generate definitions
+                 (let [full-def-requiring-pairs
+                       (->> m
+                         (filter (fn [[k v]]
+                                   (not (or (map? v)
+                                            (underbar? (symbol k))
+                                            (keyword? k))))))]
+                   (swap! !defs concatv
+                          (mapcat (fn [[k v]]
+                                    `((let [~conditional-def-sym (host=
+                                                                  ~current-host)]
+                                        (conditional-def ~conditional-def-sym
+                                                         ~(bang k) (atom ~v))
+                                        (e/def ~k (~(if (= current-host :client)
+                                                      'e/client
+                                                      'e/server)
+                                                   (e/watch ~(bang k)))))))
+                                  full-def-requiring-pairs)))
+                 (let [partial-def-requiring-pairs
+                       (->> m
+                         (filter (fn [[k v]]
+                                   (and (underbar? (symbol k))
+                                        (not (or (map? v)
+                                                 (keyword? k)))))))]
+                   (swap! !defs concatv
+                          (map (fn [[k v]]
+                                 `(e/def ~(remove-underbar k)
+                                    (symbol-macrolet ~(apply concatv @!bindings)
+                                      ~v)))
+                               partial-def-requiring-pairs)))
+                 (swap! !defs conj `(e/def ~map-name
+                                      ~(->> (map (fn [keysym]
+                                                   [(if (and
+                                                         (<
+                                                          (count dash-prefix)
+                                                          (count (str keysym)))
+                                                         (= (subs (str keysym) 0
+                                                                  (count dash-prefix))
+                                                            dash-prefix))
+                                                      (keyword (subs (str keysym)
+                                                                     (count dash-prefix)))
+                                                      (keyword keysym))
+                                                    (if (bang-or-dash-bang? keysym)
+                                                      `(~(if (= current-host :client)
+                                                           'e/client
+                                                           'e/server)
+                                                        ~keysym)
+                                                      keysym)])
+                                                 (get-keysyms m))
+                                         (into {})))))
+               (gen-component-expr! [expr !component-exprs !bindings]
+                 (swap! !component-exprs
+                        conj `(symbol-macrolet ~(apply concatv @!bindings)
+                                ~expr)))
+               (get-expr [map-name ctr-m parent-host parent-bindings]
+                 ;; the basic helper function for generating exprs
+                 (let [m                 (un-ctr ctr-m)
+                       !binding-defs     (atom [])
+                       !defs             (atom [])
+                       !bindings         (atom parent-bindings)
+                       name-submap-pairs (->> m
+                                           (filter (comp map? second))
+                                           (map (fn [[k v]]
+                                                  [(if (underbar? k)
+                                                     (remove-underbar k)
+                                                     (symbol k))
+                                                   v])))
+                       current-host      (or (:ctr/host ctr-m) parent-host)]
+                   (gen-bindings! m !bindings)
+                   (gen-binding-defs! m current-host !binding-defs !bindings)
+                   (gen-defs! m map-name current-host !defs !bindings)
+                   (when (and component-sym (:ctr/expr ctr-m))
+                     (gen-component-expr! (:ctr/expr ctr-m) !component-exprs !bindings))
+                   `(do
+                      ;; ~(deref !bindings)
+                      ~@(deref !binding-defs)
+                      ~@(mapv (fn [[map-name m]]
+                                (get-expr map-name m current-host @!bindings))
+                              name-submap-pairs)
+                      ~@(deref !defs)
+                      )))]
+            ;; default to :client for host
+            `(do
+               ~(get-expr state-sym ctr-m :client [])
+               ~(when component-sym
+                  `(e/defn ~component-sym []
+                     (e/client
+                      ~@(deref !component-exprs)))))))))
 
      (defmacro letm [state-map & body]
        (let [!bindings (atom [])]
