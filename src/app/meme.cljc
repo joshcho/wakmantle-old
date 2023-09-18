@@ -12,7 +12,7 @@
    [missionary.core]
    [app.utils :as u :refer [cond-let cmt enter arrows mb-> mb->> mb->>> dropdown
                             >defn >fn letm]]
-   [app.central :refer [defstate]]
+   [app.central :as central :refer [defstate]]
    [app.tailwind :refer [tw -tw]]
    #?(:clj
       [app.data :refer [우왁굳 아이네 징버거 비챤 릴파 주르르 고세구 gomem1 gomem2] :as data])
@@ -42,11 +42,32 @@
 
 ;; move these to clj later
 
+#_(defstate ctr-state
+    {global-state  {:ctr/host        :server
+                    n-todays-answers 3
+                    :_answer-seed    42
+                    :_today          (int e/system-time-secs)
+                    :_todays-answers ["아자뾰" "염소희" "권타버스"] ; fill out later
+                    _hint-count-fn   (fn [best-rank]
+                                       (if (< best-rank 200) 5 0))}
+     session-state {answer-state {:ctr/host      :client
+                                  :answer-idx    0
+                                  _answer        (nth (:todays-answers global-state)
+                                                      answer-idx)
+                                  :_on-last-idx  (= answer-idx (dec n-todays-answers))
+                                  :_on-first-idx (= answer-idx 0)}
+                    play-state   {recent-guess nil
+                                  past-guesses []}}})
+
+
 
 (defstate ctr-state
-  {global-state {
-                 ;; :ctr/host        :server
-                 n-todays-answers 7}})
+  {game-state {:answer-idx 0
+               :_answers   ["a" "b"]
+               _answer     (nth answers answer-idx)}
+   ab         1
+   :_name     "hello"})
+
 
 #?(:clj
    (do
@@ -420,7 +441,6 @@
    (binding [db (e/watch !conn)]
      (e/client
       (div
-        (p/peek ctr-state)
         (div (text ctr-state))
         (letm {play-flags        {hard-mode false
                                   won       false
