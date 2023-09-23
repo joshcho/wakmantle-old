@@ -91,7 +91,99 @@
                 (merge
                  (dissoc extra-meme-description-map
                          "아이네" "징버거" "릴파" "주르르" "고세구" "비챤")
-                 {"귀족희"                          "주르르가 5차 오디션에 참가한 부캐. 불곰이 경호원으로 등장하였으며 우왁굳 말에는 명예탈락."
+                 {"고놀"              "고멤놀이터의 줄임말."
+                  "고멤놀이터"        "왁타버스 고정 멤버 및 고멤 아카데미 학원생이 콘텐츠를 올리는 왁물원 게시판 중 하나로, 고멤들끼리 콘텐츠를 제작하거나 영상을 만들기 시작하면서 정식으로 우왁굳이 판을 깔아준 게시판이다. 약칭으로 고놀이라고 부른다."
+                  "연말공모전"        "트위치 스트리머 우왁굳에 의해 2014년부터 시작되어 매해 연말마다 주기적으로 진행되는 우왁굳 팬 창작물 공모전이다. 2023년 기준 10주년을 맞이했다. 우왁굳의 메인 컨텐츠이며, 줄여서 '연공전'이라고 부른다."
+                  "연공전"            "연말공모전의 줄임말."
+                  "똥글"              "일반 글의 다른 이름이었으나 그냥 똥글이라고 적어 놓는 경우도 있다. 빨리 높은 등급에 올라가기 위한 수단이다. 글의 제목은 보통 '똥글', 'ㄸㄱ', 'ㅃㅈ' 등이 있다. 이러면 금새 댓글 창이 코를 막고 있는 이모티콘으로 도배된다."
+                  "애기팬치"
+                  "침팬치들을 귀엽게 나타내는 단어다. 변형으로 애기뺑띠, 아기팬치, 애기팬티 등도 있다. \"응애 나 애기뺑띠\" 같은 형태로 자주 쓰인다."
+                  "침하"              "침팬치 하이라는 뜻"
+                  "침바"              "침팬치 바이라는 뜻"
+                  "말머리단"          "2018년 3월 말머리 규칙이 생긴 이후에도 이에 적응하지 못한 많은 침팬치들이 말머리 규칙을 준수하지 못할 때 우왁굳이 직접 선언해서 만들어진 집단을 말한다. 말머리가 달리지 않은 글에는 적게는 10개, 많게는 30개 이상의 말머리 달라는 댓글이 10초도 안되는 시간에 달 정도로 엄청난 화력을 보여주었다. 그 후로도 계속 자제없이 미쳐 날뛰자 우왁굳이 조치를 취해 지금은 거의 사라졌다. 이후 말머리 달라는 말을 함부로 하면 활동 정지였으나 카페 개혁 때 관련 조항이 느슨해지면서 무례하게만 하지 않으면 되는 걸로 바뀌었고 이후 다시 활발해져 말머리단 짤과 이모티콘도 생겨났다."
+                  "환생"
+                  "카페를 탈퇴한 뒤 다시 재가입하는 행위를 뜻한다. 보통 느그자나 침팬치 등급의 회원이 환생을 하면 많은 관심을 받는다. 요즘은 환생을 장려하는 문화가 팬치들 사이에서 생기게되면서, 느그자가 느그자 게시판을 통해 강제로 환생을 시키는 등의 사건도 늘어나고 있다. 또 네이버 시스템 특성상 탈퇴를 하면 방문수는 초기화되지만 글이나 댓글의 개수는 초기화되지 않아. 등급은 낮지만 글 개수 등은 높은 혼종이 존재한다."
+                  "첫글 핥기"
+                  "0글에서 파생된 밈. 특정 회원의 첫 번째 글을 찾아 댓글에 핥는 짤이나 핥기라고 쓰고 가는 것."
+                  "회원 등급 모에화"
+                  "왁물원의 회원 등급인 '진드기', '닭둘기', '왁무새', '침팬치', '느그자' 등급을 모에 캐릭터로 만드는 유머 겸 밈이 있다. 대표적으로는 '느그자 눈나'가 있다."
+                  "슛코"
+                  "'활동 정지'를 뜻한다. 일본어 표현으로, 직역을 하자면 '출항'이라는 뜻이다."
+                  "빙하기"
+                  "우왁굳이나 이세계아이돌 멤버들이 장기간 방송을 하지 않는 것을 뜻하는 표현이다. 빙하기(장기간 휴방)가 많이 길어지면 '대빙하기'라고도 표현한다. 빙하기가 예정되어 있으면 '곧 빙하기에 들어간다.'라고도 표현한다."
+                  "아메바"            "왁물원 최하위 카페 등급."
+                  "진드기"            "왁물원 카페 등급."
+                  "닭둘기"            "왁물원 카페 등급."
+                  "침팬치"            "왁물원 카페 등급."
+                  "왁무새"            "왁물원 카페 등급."
+                  "느그자"            "왁물원 최상위 카페 등급."
+                  "미개"              "우왁끼 등급. 가입 후 막 활동을 시작해 어떻게 해야 할 줄 모르는 미개한 상태."
+                  "노비"              "우왁끼 등급. 아직 미개하나 주어진 활동을 반복적으로 해 나가는 상태."
+                  "갓수"              "우왁끼 등급. 카페에 통달하여 자유함을 얻은 상태나 미개함이 노비와 같은 상태."
+                  "핫산"              "우왁끼 등급. 많은 활동을 하였으나 회원들이 날 보는 시선이 곱지만은 않다."
+                  "왁창"              "우왁끼 등급. 카페를 탈퇴할지 계속 활동할지 고민하는 단계 (노력으로 올 수 있는 단계)"
+                  "노숙자"            "우왁끼 등급. 카페에서 노숙활동을 이어가고 있는 사람이다."
+                  "느그자 눈나"       "모에화된 왁물원 느그자."
+                  "우리왁굳끼리"      "왁물원 이전 카페 이름"
+                  "우왁끼"            "우리 왁굳끼리의 줄임말. 전 카페."
+                  "우왁끼는 살아있다" "우왁끼에서 왁물원으로 바뀐 후 나오는 밈."
+                  "대황파고"          "폼이 잔뜩 오른 왁파고를 일컬는 말."
+                  "ㅋㅋ루삥뽕"
+                  "왁타버스 밈은 아니지만 아이네 방에서 쓰였다."
+                  "오영택배"
+                  "상대를 끌고가 낙사시키는, 소위 논개작전이 제대로 들어갔을 때 쓰인다."
+                  "오뱅언"            "'오늘 뱅송 언제 함'의 준말이다."
+                  "돚"                "돚거의 줄임말. 채팅창에 자주 도배된다."
+                  "탬탬버린"          "우왁굳의 팬이자 동료 스트리머. \"손녀\"라고 불리운다."
+                  "사나고"            "우왁굳의 팬이자 동료 스트리머. 3D펜 장인이다."
+                  "프응"              "꿀벌 아빠 유튜버이자 우왁굳의 팬."
+                  "ㅔ"                "컨셉 특성상 어떤 질문에도 대부분 예, 아뇨로 대답하는 단답벌레의 대표적인 밈. 심지어 우왁굳의 트위치 이모티콘에도 있다. ㅖ의 다른 버전. 들어보면 ㅔ와 ㅖ의 중간 정도의 발음이다. 여러 가지 톤이 있다."
+                  "비즈니스똥"
+                  "우왁굳 방송의 네임드 중간계 팬치인 '똥치킨'과 목소리가 비슷해서 붙은 의심 섞인 별명. 해당 팬치는 직접 비즈니스킴과 함께 우왁굳을 초대해서 해명했지만 여전히 둘이 동일인물이라는 말이 계속해서 나오고 있다."
+                  "똥상업"
+                  "우왁굳 방송의 네임드 중간계 팬치인 '똥치킨'과 목소리가 비슷해서 붙은 의심 섞인 별명. 해당 팬치는 직접 비즈니스킴과 함께 우왁굳을 초대해서 해명했지만 여전히 둘이 동일인물이라는 말이 계속해서 나오고 있다."
+                  "GSG"               "2021년 9월 15일 우왁굳의 생방송에서 아이네의 노래에 대한 피드백을 하던 중, 조금 더 감미로움을 빼라는 말에 시청자들이 고세구 한스푼 첨가하라는 말을 했고, MSG와 비슷한 GSG라는 별명이 생겼다."
+                  "릴파형 동검"       "릴파의 비파형 동검에서 유래된 별명."
+                  "비킴"              "비즈니스킴의 줄임말."
+                  "캘칼"              "캘리칼리데이비슨의 줄임말."
+                  "광고이즈크레이지"  "우왁굳이 광고로 수익창출을 안 하고 있다가 처음으로 수익창출한 영상에서 뜬 댓글."
+                  "GWANGO IS CRAZY"   "우왁굳이 광고로 수익창출을 안 하고 있다가 처음으로 수익창출한 영상에서 뜬 댓글."
+                  "새벽반"            "주로 메인컨텐츠가 끝나고 새벽에 표지왕이나 업로드를 하는 시간을 일컬는 말."
+                  "새벽반 차가리"     "오뱅계르크 티셔츠의 라인 중 하나."
+                  "매굳"              "발로란트를 비롯한 온라인 PvP 게임을 할 때 트위치 포인트 베팅에서 우왁굳이 패배하는 쪽에 걸면 이렇게 불린다. 애국 베팅을 꼬아서 만든 드립으로 2020년 말 우왁굳 주관 피파 리그인 WPL 콘텐츠 때부터 사용되었다."
+                  "예열"              "메인컨텐츠 전의 시간."
+                  "후열"              "메인컨텐츠 후의 시간."
+                  "왁뱅온"            "우왁굳 뱅온이라는 뜻."
+                  "주뱅온"            "주르르 뱅온이라는 뜻."
+                  "아뱅온"            "아이네 뱅온이라는 뜻."
+                  "징뱅온"            "징버거 뱅온이라는 뜻."
+                  "릴뱅온"            "릴파 뱅온이라는 뜻."
+                  "고뱅온"            "고세구 뱅온이라는 뜻."
+                  "챤뱅온"            "비챤 뱅온이라는 뜻."
+                  "왁뱅알"            "우왁굳 방송 알찼다라는 뜻."
+                  "주뱅알"            "주르르 방송 알찼다라는 뜻."
+                  "아뱅알"            "아이네 방송 알찼다라는 뜻."
+                  "징뱅알"            "징버거 방송 알찼다라는 뜻."
+                  "릴뱅알"            "릴파 방송 알찼다라는 뜻."
+                  "고뱅알"            "고세구 방송 알찼다라는 뜻."
+                  "챤뱅알"            "비챤 방송 알찼다라는 뜻."
+                  "고멤무스메"        "우마무스메에서 기반이 된 어떤 고멤이 합방에 참가할 지 겨루는 게임."
+                  "SUPERHERO"         "이세계 페스티벌에서 출시된 첫번째 신곡."
+                  "슈퍼히어로"        "이세계 페스티벌에서 출시된 첫번째 신곡."
+                  "OVER"              "이세계 페스티벌에서 출시된 두번째 신곡."
+                  "오버"              "이세계 페스티벌에서 출시된 두번째 신곡."
+                  "발"                "발로란트라는 뜻."
+                  "왁맨틀"            "지금 하고 있는 게임 이름. 꼬맨틀에서 기반이 된 왁타버스 밈을 맞추는 게임이다."
+                  "순수노잼"          "진희의 호칭 같이 된 말."
+                  "꼰대공무원"        "8차 고멤 오디션의 최종 면접 당시 데스해머쵸로키가 시리안에게 꼰대 공무원이라고 하였고, 이를 들은 아카데미생들 또한 매우 통쾌해하며 격렬히 공감하였다. 마침 합방 중 도덕적인 지적을 해온 행동들이 시청자들에게도 투영되며 공감대를 얻었다."
+                  "빡리안"            "시리안이 분노를 참지 못하고 화를 낼 때마다 웃음을 주며 생긴 별명이다."
+                  "닌닌이다!"         "닌닌이 자신을 소개하는 인사말. 닌자나 비스무레한 것들이 보이면 시청자들 전부 닌닌이다!를 외치곤 한다."
+                  "셈이코패스"        "수셈이가 아카데미 전학식을 시작으로 합방마다 강렬한 인상을 남겨서 생긴 별명으로, 부정형인간의 하위호환이라는 초반의 평가를 벗어 현재의 별명으로 자리잡게 되었다."
+                  "맑은 눈의 광인"    "줄여서 맑눈광. 빅토리가 언제 어느 때나 무한긍정 면모를 보이면서 간혹 사이코패스 같은 모습을 보여준데서 생긴 밈이다."
+                  "황토리"            "황제+빅토리 로 이루어진 별명으로 고카데미 학예회 시작 전에, 3기 인턴 시절에 인턴들도 학예회 맵에 참여하는 걸 허락한 우왁굳이, 비벼도 된다는 말에 10초 만에 초대 요청을 넣는 모습을 보여주면서 우왁굳이 빠른 모습을 보면서 황토리라고 부르면서 시작된 별명이다. 이후 많이는 안 쓰이지만, 빅토리가 합방에서 알잘딱한 모습을 보여줄 때마다 채팅창에서 황토리라고 반응하는 모습을 볼 수 있다."
+                  "도박 중독자"       "아카데미 학예회 예열에서 지하에 있는 카지노 도박에 빠진 것 때문에 생긴 밈이다."
+
+                  "귀족희"                          "주르르가 5차 오디션에 참가한 부캐. 불곰이 경호원으로 등장하였으며 우왁굳 말에는 명예탈락."
                   "시부야 아줌마"                   "고멤 오디션을 참가한 시부야를 외치는 오벤또 사장님. 알고보니 뢴트게늄이 부추겨서 만들어진 고세구의 부캐."
                   "맏언니즈"                        "팀 내 최연장자 라인. 언니즈라는 명칭이 있지만, 이는 릴파까지 포함한 3인 조합에 더 자주 쓰이기 때문에 보통은 맏언니즈 내지 큰언니즈로 불린다. 아이네는 이세돌의 둘째인 징버거를 존칭 없이 '우리 버거'나 '버거야'라고 부를 수 있는 유일한 멤버이기에, 조심성 많은 성격인 징버거도 맏언니 아이네에게 차츰차츰 마음을 열며 의지하는 모습을 보여 아이네가 감동을 받았다고 한다. 쑥스러움을 많이 타는 징버거를 아이네가 놀리거나 챙겨주는 모습이 많이 관찰되지만, 징버거를 필두로 동생들이 합심해 맏언니 아이네에게 장난을 걸고 반응을 즐기는 모습도 자주 보인다."
                   "메보즈"                          "아이네와 릴파가 이세돌의 메인보컬로 분류되는 것에 영향을 받아 생겨난 조합. 두 사람이 사용하는 아바타의 제작자가 같기 때문에 자매라고 표현하기도 한다. 아이네 본인의 말에 따르면 애증의 관계인데, 원래 아이네는 조용하고 차분한 성향이라 이세돌 결성 초기에 합방을 하면 혼자 구석에 가서 사람들을 구경하고 있는 경우가 많았다. 그런데 릴파는 이런 모습을 보면 오히려 더 말을 붙이며 친해지고 싶어 하는 타입이라 적극적으로 아이네를 따라다니며 장난을 걸기 시작했고 결국 아이네의 숨겨진 분노를 일깨워 버린 바람에 서로 투닥투닥거리다 가장 먼저 친해져 버렸다. 처음에는 릴파가 장난을 치기 시작하면 아이네는 그 모습을 지켜보며 마음속으로만 꾹꾹 눌러담거나 이따금 한 번씩 크게 터뜨리는 패턴이었지만, 친분이 두터워지면서 아이네가 악질네로 변신해 먼저 릴파를 놀리는 경우도 많이 늘었다. 또한 지금은 금지된 밈인 뢴르르처럼 같은 타겟을 향해 함께 악질짓을 하는 경우도 간혹 있다. It Takes Two를 같이 플레이했는데, 아이네가 릴파랑 어울리며 많이 밝고 활달해졌음에도 워낙 릴파가 에너지가 넘치다 보니 갈수록 기가 빨리는 모습을 보여주었다."
@@ -356,55 +448,58 @@
 (defstate ctr-state
   {answer-seed  (int (* 1000 (rand)))
    ;; move answer-seed inside global-state with fixed # for determinism
-   global-state {:ctr/host            :server
-                 _n-todays-answers    9
+   global-state {:ctr/host                   :server
+                 :_n-answer-preload-interval 10
                  ;; :_answer-seed        42
                  ;; (int (* 1000 (rand)))
-                 :_today-number       (e/server (- (int (quot (+ e/system-time-secs
-                                                                 (* 9 60 60))
-                                                              (* 24 60 60)))
-                                                   19618))
-                 _all-meme-names      (e/server (keys all-meme-info-map))
-                 :_todays-answers     (e/server
-                                       (->> (seeded-shuffle
-                                             (keys (filter (fn [[k v]]
-                                                             (and (:owner v)
-                                                                  (not= (:owner v) "고정멤버")
-                                                                  (not= (:owner v) "이세계아이돌")
-                                                                  (not= (:owner v) "고멤아카데미")))
-                                                           all-meme-info-map))
-                                             answer-seed)
-                                         (drop (* n-todays-answers today-number))
-                                         (take n-todays-answers)))
-                 :_guess-score-maps   (e/server (mapv get-guess-score-map todays-answers))
-                 :_guess-rank-maps    (mapv (fn [m]
-                                              (->> (map
-                                                    (fn [[meme-name _] rank]
-                                                      [meme-name rank])
-                                                    (reverse (sort-by second m))
-                                                    (map inc (range)))
-                                                (into {})))
-                                            guess-score-maps)
+                 :_today-number              (e/server (- (int (quot (+ e/system-time-secs
+                                                                        (* 9 60 60))
+                                                                     (* 24 60 60)))
+                                                          19618))
+                 _all-meme-names             (e/server (keys all-meme-info-map))
+                 :_answers-seq               (e/server
+                                              (seeded-shuffle
+                                               (keys (filter (fn [[k v]]
+                                                               (and (:owner v)
+                                                                    (not= (:owner v) "고정멤버")
+                                                                    (not= (:owner v) "이세계아이돌")
+                                                                    (not= (:owner v) "고멤아카데미")))
+                                                             all-meme-info-map))
+                                               answer-seed))
+                 :_n-answer-preload-count
+                 (* (inc (int (/ answer-idx n-answer-preload-interval)))
+                    n-answer-preload-interval)
+                 :_loaded-answers-seq        (take n-answer-preload-count
+                                                   answers-seq)
+                 :_guess-score-maps          (e/server (mapv get-guess-score-map
+                                                             loaded-answers-seq))
+                 :_guess-rank-maps           (mapv (fn [m]
+                                                     (->> (map
+                                                           (fn [[meme-name _] rank]
+                                                             [meme-name rank])
+                                                           (reverse (sort-by second m))
+                                                           (map inc (range)))
+                                                       (into {})))
+                                                   guess-score-maps)
                  :_guess-to-suggestion-cache
                  nil
-                 :_meme-info-map      nil
-                 :_autocomplete-count 10}
+                 :_meme-info-map             nil
+                 :_autocomplete-count        10}
    session-state
    {:ctr/host    :client
     answer-state {answer-idx            0
-                  _answer               (nth (:todays-answers global-state)
+                  _answer               (nth (:loaded-answers-seq global-state)
                                              answer-idx)
                   :_answer-descriptions (e/server (mapv #(get-in all-meme-info-map [% :description])
-                                                        (:todays-answers global-state)))
+                                                        (:loaded-answers-seq
+                                                         global-state)))
                   _answer-description   (nth answer-descriptions answer-idx)
                   _answer-owner
                   (e/server (get-in all-meme-info-map [answer :owner]))
                   _guess-score-map      (nth (:guess-score-maps global-state)
                                              answer-idx)
                   _guess-rank-map       (nth (:guess-rank-maps global-state)
-                                             answer-idx)
-                  :_on-last-idx         (= answer-idx (dec n-todays-answers))
-                  :_on-first-idx        (= answer-idx 0)}
+                                             answer-idx)}
     play-state   {:revealed-indices []
                   play-flags        {:won       false
                                      :gave-up   false
@@ -417,24 +512,7 @@
                   (do
                     (when (= recent-guess answer)
                       (reset! (:!won play-flags) true)
-                      (swap! (:!streak play-flags) inc))
-                    #_(when n-todays-answers
-                        (reset! !scores (vec (repeat n-todays-answers nil))))
-                    #_(when (and (nil? current-score) (:finished play-flags))
-                        (reset! !current-score (->> (+ (- 20
-                                                          (if (:won play-flags) 0 10)
-                                                          (count past-guesses))
-                                                       1 ; 1 for one final guess
-                                                       (if (:won play-flags)
-                                                         current-hint-count
-                                                         0))
-                                                 (max 0)
-                                                 (min 20))))
-                    #_(when current-score
-                        (swap! !scores
-                               (fn [scores]
-                                 (when (nil? (nth scores answer-idx))
-                                   (assoc scores answer-idx current-score))))))}
+                      (swap! (:!streak play-flags) inc)))}
     guess-state  {hint-state
                   {word-hovered          false
                    :_earned-hint-count   (if best-guess-rank
@@ -453,13 +531,15 @@
                    :_answer-description-word-count
                    (count (str/split answer-description #" "))
                    :_starting-hint-count (cond
-                                           (< 40 answer-description-word-count)
+                                           (< 50 answer-description-word-count)
+                                           7
+                                           (< 38 answer-description-word-count)
                                            6
-                                           (< 25 answer-description-word-count)
+                                           (< 22 answer-description-word-count)
                                            5
-                                           (< 15 answer-description-word-count)
+                                           (< 13 answer-description-word-count)
                                            4
-                                           (< 8 answer-description-word-count)
+                                           (< 7 answer-description-word-count)
                                            3
                                            :else
                                            2)
@@ -532,6 +612,7 @@
 (e/defn Main []
   (e/client
    (div
+     (tw "px-4")
      (CtrExprs.)
      ;; (div (text ctr-state))
      ;; (div (text answer-idx))
@@ -552,7 +633,7 @@
      #_(div (text
              (str input-value-completions)))
      (div
-       (tw "mx-auto mt-14 max-w-lg sm:mt-12 relative")
+       (tw "mx-auto mt-8 max-w-lg sm:mt-8 relative")
        (div
          (tw "w-fit my-2 text-lg font-bold")
          (text "오늘의 왁맨틀 - 왁타버스 밈 추측 게임"))
@@ -650,8 +731,14 @@
                      (span
                       (tw "mr-1")
                       (text s))))))
-             (when (and finished answer-owner)
-               (div (text (str "[" answer-owner "]"))))
+             (let [!got-owner-correct (atom false)]
+               (when (:finished play-flags)
+                 (reset! !got-owner-correct false))
+               (when (= answer-owner recent-guess)
+                 (reset! !got-owner-correct true))
+               (when (or (e/watch !got-owner-correct)
+                         (and finished answer-owner))
+                 (div (text (str "[" answer-owner "]")))))
              (div
                (tw "grow"))
              (div
@@ -849,18 +936,11 @@
          (div (tw "flex")
            (div (tw "grow"))
            (div
-             (tw "absolute right-4 mr-[2px] mt-[-4px]")
+             (tw "absolute right-4 mr-[-2px]")
              (let [streak-size (min 36 (+ 12 (* 2 (:streak play-flags))))]
                (style {:font-size   (str streak-size "px")
                        :line-height (str streak-size "px")}))
-             (text
-              (:streak play-flags)
-              ;; "(" (inc answer-idx) "/" n-todays-answers ")"
-              #_(let [n (inc (:today-number global-state))]
-                  (cond (= n 1) "첫" (= n 2) "두"   (= n 3) "세"
-                        (= n 4) "네" (= n 5) "다섯" true    n))
-              ;; "번째 왁맨틀"
-              ))))
+             (text (:streak play-flags)))))
        (div
          (tw "flex gap-2")
          (when-not (:finished play-flags)
@@ -869,12 +949,10 @@
                       (fn []
                         ;; js/alert has some weird behavior
                         (reset! !best-guess-rank nil)
-                        (reset! (:!gave-up play-flags) true)
-                        (reset! (:!streak play-flags) 0)))
+                        (reset! (:!gave-up play-flags) true)))
              (tw "btn-[* sm] bg-base-100 hover:bg-base-200 rounded-md")
              (text "포기")))
-         (if (and (:finished play-flags)
-                  (not= answer-idx (dec n-todays-answers)))
+         (when (:finished play-flags)
            (ui/button
              (e/fn []
                (swap! (:!answer-idx answer-state) inc)
@@ -886,44 +964,22 @@
                (reset! !view-related nil)
                ;; (reset! !current-score nil)
                (reset! !best-guess-rank nil)
-               (reset! (:!revealed-indices play-state) []))
+               (reset! (:!revealed-indices play-state) [])
+               (when (:gave-up play-flags)
+                 (reset! (:!streak play-flags) 0)))
              (tw "btn-[* sm] bg-base-100 hover:bg-base-200 rounded-md"
                  "border-[black 2] hover:border-black"
                  (when (= (:streak play-flags) 0)
                    "border-green-500"))
              (text
-              (if (= (:streak play-flags) 0)
+              (if (:gave-up play-flags)
                 "재도전"
-                "다음 문제")))
-           (when (and (:finished play-flags)
-                      (= answer-idx (dec n-todays-answers)))
-             (div
-               (tw "text-sm text-gray-600 ml-1 mt-[-1px]")
-               (text "내일의 왁맨틀: "
-                     (let [today-secs (- (* 3600 24)
-                                         (mod (+ (e/server
-                                                  (int e/system-time-secs))
-                                                 (* 3600 9))
-                                              (* 3600 24)))]
-                       (str
-                        (int (/ today-secs 3600))
-                        ":"
-                        (let [mins (mod (int (/ today-secs 60)) 60)]
-                          (str
-                           (when (= (count (str mins)) 1)
-                             "0")
-                           mins))
-                        ":"
-                        (let [secs (mod (int today-secs) 60)]
-                          (str
-                           (when (= (count (str secs)) 1)
-                             "0")
-                           secs))))))))))
+                "다음 문제"))))))
      (Q&A.))))
 
 (e/defn Q&A []
   (div
-    (tw "max-w-lg mx-auto mt-4 text-sm px-4 sm:px-0")
+    (tw "max-w-lg mx-auto mt-4 text-sm sm:px-0")
     (div
       (tw "flex")
       (div
