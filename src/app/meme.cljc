@@ -91,7 +91,9 @@
                 (merge
                  (dissoc extra-meme-description-map
                          "아이네" "징버거" "릴파" "주르르" "고세구" "비챤")
-                 {"맏언니즈"                        "팀 내 최연장자 라인. 언니즈라는 명칭이 있지만, 이는 릴파까지 포함한 3인 조합에 더 자주 쓰이기 때문에 보통은 맏언니즈 내지 큰언니즈로 불린다. 아이네는 이세돌의 둘째인 징버거를 존칭 없이 '우리 버거'나 '버거야'라고 부를 수 있는 유일한 멤버이기에, 조심성 많은 성격인 징버거도 맏언니 아이네에게 차츰차츰 마음을 열며 의지하는 모습을 보여 아이네가 감동을 받았다고 한다. 쑥스러움을 많이 타는 징버거를 아이네가 놀리거나 챙겨주는 모습이 많이 관찰되지만, 징버거를 필두로 동생들이 합심해 맏언니 아이네에게 장난을 걸고 반응을 즐기는 모습도 자주 보인다."
+                 {"귀족희"                          "주르르가 5차 오디션에 참가한 부캐. 불곰이 경호원으로 등장하였으며 우왁굳 말에는 명예탈락."
+                  "시부야 아줌마"                   "고멤 오디션을 참가한 시부야를 외치는 오벤또 사장님. 알고보니 뢴트게늄이 부추겨서 만들어진 고세구의 부캐."
+                  "맏언니즈"                        "팀 내 최연장자 라인. 언니즈라는 명칭이 있지만, 이는 릴파까지 포함한 3인 조합에 더 자주 쓰이기 때문에 보통은 맏언니즈 내지 큰언니즈로 불린다. 아이네는 이세돌의 둘째인 징버거를 존칭 없이 '우리 버거'나 '버거야'라고 부를 수 있는 유일한 멤버이기에, 조심성 많은 성격인 징버거도 맏언니 아이네에게 차츰차츰 마음을 열며 의지하는 모습을 보여 아이네가 감동을 받았다고 한다. 쑥스러움을 많이 타는 징버거를 아이네가 놀리거나 챙겨주는 모습이 많이 관찰되지만, 징버거를 필두로 동생들이 합심해 맏언니 아이네에게 장난을 걸고 반응을 즐기는 모습도 자주 보인다."
                   "메보즈"                          "아이네와 릴파가 이세돌의 메인보컬로 분류되는 것에 영향을 받아 생겨난 조합. 두 사람이 사용하는 아바타의 제작자가 같기 때문에 자매라고 표현하기도 한다. 아이네 본인의 말에 따르면 애증의 관계인데, 원래 아이네는 조용하고 차분한 성향이라 이세돌 결성 초기에 합방을 하면 혼자 구석에 가서 사람들을 구경하고 있는 경우가 많았다. 그런데 릴파는 이런 모습을 보면 오히려 더 말을 붙이며 친해지고 싶어 하는 타입이라 적극적으로 아이네를 따라다니며 장난을 걸기 시작했고 결국 아이네의 숨겨진 분노를 일깨워 버린 바람에 서로 투닥투닥거리다 가장 먼저 친해져 버렸다. 처음에는 릴파가 장난을 치기 시작하면 아이네는 그 모습을 지켜보며 마음속으로만 꾹꾹 눌러담거나 이따금 한 번씩 크게 터뜨리는 패턴이었지만, 친분이 두터워지면서 아이네가 악질네로 변신해 먼저 릴파를 놀리는 경우도 많이 늘었다. 또한 지금은 금지된 밈인 뢴르르처럼 같은 타겟을 향해 함께 악질짓을 하는 경우도 간혹 있다. It Takes Two를 같이 플레이했는데, 아이네가 릴파랑 어울리며 많이 밝고 활달해졌음에도 워낙 릴파가 에너지가 넘치다 보니 갈수록 기가 빨리는 모습을 보여주었다."
                   "은발즈"                          "아이네 고세구 두 멤버의 머리 색깔이 하얀색 계열인 점에서 유래된 조합으로, 백발즈나 네고즈라고도 불린다. 초반에는 주로 고세구가 아이네에게 먼저 장난을 거는 전개가 많았는데, 장난스러운 카톡을 보낸다거나 얼토당토 않은 말을 늘어놓으며 친해지고 싶은 마음에 좋아하는 사람들에게 장난을 자주 걸었다고 한다. 그 때문인지 아이네-릴파가 서로의 약점을 잡아서 놀리거나 투닥거리는 연년생 자매, 혹은 실친 같은 느낌이라면 아이네-고세구는 나이 차이가 좀 있는 자매 같다는 반응이 많다. 고세구는 아이네에 대해 웃음이 많고 장난을 잘 받아주는 상냥한 언니라는 말과 함께 자주 애정을 표현하고 있으며, 아이네도 고세구에 대해 굉장히 투명하고 솔직하며, 당차고 씩씩해서 걱정을 안 하게 만드는 동생이라는 말과 함께 애정을 표현한다. 고세구의 커버 곡 팬서비스 영상에서는 아이네가 조연으로 등장했고 이후 고세구의 부탁으로 나의 천사를 불러주면서 세계관이 연결되는 케미를 보였다."
                   "맏막즈"                          "아이네 비챤 둘 다 순둥순둥하고 남을 잘 배려하는 성격인지라 투닥투닥하는 케미보다는 서로 잔잔하게 귀여운 장면을 자주 보여준다. 징버거와 고세구가 자신을 사이에 두고 서로 본인에게 의지하라고 이야기하는(하지만 그 와중에도 서로를 고로시하는 데 여념이 없던) 클립을 본 비챤이 가장 먼저 찾은 멤버가 바로 아이네였을 만큼 평소에도 많이 의지하는 편인 듯하며, 아이네도 막내 비챤을 살갑게 잘 챙겨주는 모습이 많이 보인다. 이세돌 단체 대화방에서 엄하거나 약간 수위 높은 대화가 오갈 때면 아이네는 \"챤이 있잖아! 그런 말 하면 어떡해!\"라고 이야기한다는데, 비챤의 말에 따르면 그럴 땐 아이네가 자기를 거의 세 살짜리 아기로 대하는 기분이 든다고 한다."
@@ -550,15 +552,17 @@
      #_(div (text
              (str input-value-completions)))
      (div
-       (tw "mx-auto mt-14 sm:mt-12 max-w-md relative")
+       (tw "mx-auto mt-14 max-w-lg sm:mt-12 relative")
        (div
-         (tw "mx-auto w-fit my-2 text-lg font-bold")
+         (tw "w-fit my-2 text-lg font-bold")
          (text "오늘의 왁맨틀 - 왁타버스 밈 추측 게임"))
        ;; (div (text scores))
        ;; (div (text current-score))
        ;; (div (text (count past-guesses)))
        (div
-         (tw "mx-4 my-2 border-[black 2] p-2")
+         (tw "my-2 border-[black 2] p-2"
+             ;; "mx-4"
+             )
          (div
            (letm {temp           nil
                   alert-word     nil
@@ -599,7 +603,8 @@
                         "bg-neutral-content")
                       (when (empty? input-value-completions)
                         (tw "hover:bg-base-200"
-                            "pointer-events-none"))))))
+                            "pointer-events-none")))
+                  (style {:min-width "200px"}))))
              (when alert-word
                (div
                  (tw "text-xs text-red-500 my-[2px]")
@@ -610,7 +615,7 @@
        (let [{:keys [finished won gave-up]} play-flags]
          (when finished
            (div
-             (tw "ml-4 font-bold mb-2 flex")
+             (tw "font-bold mb-2 flex")
              (cond won     (div (tw "text-green-500")
                              (text
                               (str
@@ -629,7 +634,9 @@
                 (if view-related
                   "관련 밈 끄기"
                   "관련 밈 보기")))))
-         (div (tw "border-[black 2] bg-base-200 p-2 mx-4 rounded-sm mb-2 text-sm")
+         (div (tw "border-[black 2] bg-base-200 p-2 rounded-sm mb-2 text-sm"
+                  ;; "mx-4"
+                  )
            (div (tw "flex")
              (div (tw "w-fit h-5 border-[*] mb-1")
                (if finished
@@ -763,7 +770,7 @@
                            (subs (str score) 0 5))))))))))
        (when (not-empty past-guesses)
          (div
-           (tw "border-[black 2] bg-base-200 p-2 mx-4 rounded-sm text-sm mb-2")
+           (tw "border-[black 2] bg-base-200 p-2 rounded-sm text-sm mb-2")
            (div
              (tw "flex font-bold mb-2")
              (div
@@ -791,41 +798,40 @@
                                    (fn [[meme-name _]]
                                      (get guess-score-map meme-name)))
                                   reverse)))]
+
              (let [first? (= idx (count past-guesses))]
                (div
                  (tw "px-2 py-[1px] flex gap-4"
                      (when first?
                        "border-[b gray-500] mb-2 pb-2"))
                  (div
-                   (tw "w-56 flex")
-                   (div
-                     (tw "w-12")
-                     (text idx))
-                   (div
-                     (tw "hover:cursor-pointer grow")
-                     (div
-                       ;; don't merge these tw's, super weird bug
-                       (if (= meme-name answer)
-                         (tw "text-green-500 font-bold")
-                         (when first?
-                           (tw "text-red-400 font-bold")))
-                       (text meme-name))
-                     (when (dom/Hovered?.)
-                       (let [description
-                             (e/server (get-in all-meme-info-map
-                                               [meme-name :description]))]
-                         (when (not-empty description)
-                           (div
-                             (tw "absolute bg-neutral-content ml-5 mt-1 rounded-md p-2 text-sm"
-                                 "max-w-sm drop-shadow-lg whitespace-pre-line z-50")
-                             (text (str
-                                    description
-                                    (let [owner (e/server (get-in all-meme-info-map [meme-name :owner]))]
-                                      (when-not (or (empty? owner) (nil? owner))
-                                        (str
-                                         "\n[" owner "]")))))))))))
+                   (tw "w-8")
+                   (text idx))
                  (div
-                   (tw "flex w-24 sm:w-36")
+                   (tw "hover:cursor-pointer grow")
+                   (div
+                     ;; don't merge these tw's, super weird bug
+                     (if (= meme-name answer)
+                       (tw "text-green-500 font-bold")
+                       (when first?
+                         (tw "text-red-400 font-bold")))
+                     (text meme-name))
+                   (when (dom/Hovered?.)
+                     (let [description
+                           (e/server (get-in all-meme-info-map
+                                             [meme-name :description]))]
+                       (when (not-empty description)
+                         (div
+                           (tw "absolute bg-neutral-content ml-5 mt-1 rounded-md p-2 text-sm"
+                               "max-w-sm drop-shadow-lg whitespace-pre-line z-50")
+                           (text (str
+                                  description
+                                  (let [owner (e/server (get-in all-meme-info-map [meme-name :owner]))]
+                                    (when-not (or (empty? owner) (nil? owner))
+                                      (str
+                                       "\n[" owner "]"))))))))))
+                 (div
+                   (tw "flex w-[153px] mr-[-8px]")
                    (div
                      (tw "grow")
                      (let [score (get guess-score-map meme-name)]
@@ -833,36 +839,12 @@
                         (if (= score 100)
                           "100.00"
                           (subs (str score) 0 5)))))
-                   (div (text (get guess-rank-map meme-name)))))))
-           #_(e/for [[member group] (reverse member-group-pair-guesses)]
-               (div
-                 (tw "px-2 py-[1px] flex gap-4")
-                 (div
-                   (tw "w-56 flex")
                    (div
-                     (tw "w-12")
-                     (text "-"))
-                   (div
-                     (tw "grow")
-                     (div (text member))))
-                 (div
-                   (tw "flex w-24 sm:w-36")
-                   (div
-                     (tw "grow")
-                     (text (cond (= member (get-in meme-map [answer :topic]))
-                                 "주인"
-                                 (= (member->group-name member)
-                                    (member->group-name (get-in meme-map [answer :topic])))
-                                 "근접"
-                                 :else
-                                 "-")))
-                   (div
-                     (tw "mr-1")
-                     (text "-")))))
-           ))
+                     (tw "pr-2")
+                     (text (get guess-rank-map meme-name)))))))))
        (if (:gave-up play-flags)
          (div
-           (tw "ml-4 text-sm text-green-500 mb-1 mt-[-2px] font-bold")
+           (tw "text-sm text-green-500 mb-1 mt-[-2px] font-bold")
            (text "연속 맞춘 개수: " (:streak play-flags)))
          (div (tw "flex")
            (div (tw "grow"))
@@ -880,7 +862,7 @@
               ;; "번째 왁맨틀"
               ))))
        (div
-         (tw "flex gap-2 ml-4")
+         (tw "flex gap-2")
          (when-not (:finished play-flags)
            (dom/button
              (dom/on! "click"
@@ -943,7 +925,12 @@
   (div
     (tw "max-w-lg mx-auto mt-4 text-sm px-4 sm:px-0")
     (div
-      (text "Q & A"))
+      (tw "flex")
+      (div
+        (tw "mb-3 text-lg font-bold")
+        (text "Q & A"))
+      (div
+        (tw "ml-2 border-t border-black mt-[13px] grow")))
     (e/for [[s1 s2] [["왁맨틀은 무엇인가요?"
                       "왁맨틀은 오늘의 왁타버스 밈을 맞히는 게임입니다. 기존 꼬맨틀 게임과 비슷하지만, 정답에 가까워질수록 부분적으로 설명을 공개할 수 있습니다."]
                      ["어떤 밈이 포함되어 있나요?"
@@ -962,7 +949,7 @@
        (tw "mt-2")
        (text s1))
       (div
-        (tw "sm:text-xs mb-2 whitespace-pre-line")
+        (tw "sm:text-xs mb-4 mt-1 whitespace-pre-line")
         (if (= s2 "네 여기있습니다.")
           (a
            (props {:href   "https://github.com/joshcho/wakmantle"
